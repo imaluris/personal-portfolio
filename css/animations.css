@@ -1,0 +1,918 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+  overflow: hidden;
+}
+
+/* ========================================
+   LAYOUT
+======================================== */
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.sections-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.section-home {
+  display: flex;
+  align-items: center;
+}
+
+.section-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  padding: 20px 28vw 20px 5vw;
+  transform: translateY(100%);
+}
+
+/* ========================================
+   HUD DECORATIVO
+======================================== */
+
+.hud {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-42%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 500px;
+  height: 500px;
+}
+
+.hud-circle {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+}
+
+.hud-info {
+  position: absolute;
+  top: 6%;
+  right: -8%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hud-info-title {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+.hud-info-value {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 1px;
+}
+
+.hud-line {
+  position: absolute;
+  background: rgba(124, 58, 237, 0.5);
+}
+
+.hud-line-tr {
+  top: 10%;
+  right: 12%;
+  width: 1px;
+  height: 30px;
+}
+
+.hud-line-br {
+  bottom: 22%;
+  right: 5%;
+  width: 1px;
+  height: 20px;
+}
+
+.hud-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7c3aed;
+}
+
+.hud-dot-tr {
+  top: calc(10% + 30px);
+  right: calc(12% - 2.5px);
+}
+
+.hud-dot-br {
+  bottom: calc(22% + 20px);
+  right: calc(5% - 2.5px);
+}
+
+/* ========================================
+   HERO SINISTRA
+======================================== */
+
+.hero-left {
+  position: relative;
+  z-index: 1;
+  padding-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 400px;
+}
+
+/* ========================================
+   NAME ROWS
+======================================== */
+
+.name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-start;
+}
+
+.name-row {
+  position: relative;
+  display: block;
+  font-size: 40px;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.name-row h1 {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 800;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  padding: 6px 14px;
+}
+
+#name     { color: #000; }
+#surname  { color: #fff; }
+#lastname { color: #fff; }
+
+.anim1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #00d0d3;
+  z-index: -2;
+  animation: slideIn 3s ease forwards;
+}
+
+.anim2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #5a00a3;
+  z-index: -2;
+  animation: slideIn 3s ease forwards;
+}
+
+.anim3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #5a00a3;
+  background-color: rgba(90, 0, 163, 0.3);
+  z-index: -2;
+  animation: slideIn 3s ease forwards;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  z-index: -1;
+  animation: slideOut 2s ease forwards;
+}
+
+/* ========================================
+   ROLE & DESCRIPTION
+======================================== */
+
+.hero-role {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #00d0d3;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.hero-role::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #00d0d3;
+  flex-shrink: 0;
+}
+
+.hero-desc {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ========================================
+   CTA BUTTON
+======================================== */
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease;
+  width: fit-content;
+}
+
+.cta-btn:hover {
+  border-color: #00d0d3;
+  color: #00d0d3;
+}
+
+.cta-arrow {
+  font-size: 15px;
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ========================================
+   SIDE NAV
+======================================== */
+
+.side-nav {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  padding-right: 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nav-num {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  color: #a855f7;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.nav-item.active .nav-num {
+  color: #00d0d3;
+}
+
+.nav-dash {
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: #a855f7;
+}
+
+.nav-item.active .nav-dash {
+  background: #00d0d3;
+}
+
+.nav-label {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.nav-item.active .nav-label {
+  color: #fff;
+}
+
+.nav-item:hover:not(.active) .nav-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   PROJECTS SECTION
+======================================== */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  width: 90%;
+  flex: 1;
+  min-height: 0;
+}
+
+.project-card {
+  background: #0c0c18;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 24px;
+  gap: 16px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: rgba(168, 85, 247, 0.35);
+  transform: translateY(-2px);
+}
+
+.card-body {
+  flex: 0 0 44%;
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-num {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  color: #00d0d3;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.card-tag {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.28);
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+.card-title {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.card-desc {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.card-link {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 11px;
+  color: #00d0d3;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.3s ease;
+}
+
+.project-card:hover .card-link {
+  gap: 14px;
+}
+
+.card-mockup {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  min-width: 0;
+}
+
+.card-mockup::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #0c0c18 0%, transparent 25%);
+  pointer-events: none;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.85;
+}
+
+/* ========================================
+   TECH STACK SECTION
+======================================== */
+
+.section-techstack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  padding: 20px 28vw 20px 5vw;
+  transform: translateY(100%);
+}
+
+.techstack-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 52px;
+  width: 100%;
+}
+
+.techstack-heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.techstack-label {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  color: #00d0d3;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.techstack-title {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  color: #fff;
+  margin: 10px 0 0;
+  line-height: 1.1;
+}
+
+.techstack-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.tech-group-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.tech-group-name {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.tech-group-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tech-badge {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: default;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.frontend .tech-badge:hover {
+  border-color: rgba(0, 208, 211, 0.5);
+  color: #00d0d3;
+  background: rgba(0, 208, 211, 0.06);
+}
+
+.backend .tech-badge:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.06);
+}
+
+.cms .tech-badge:hover {
+  border-color: rgba(0, 208, 211, 0.35);
+  color: #00d0d3;
+  background: rgba(0, 208, 211, 0.04);
+}
+
+.database .tech-badge:hover {
+  border-color: rgba(0, 208, 211, 0.35);
+  color: #00d0d3;
+  background: rgba(0, 208, 211, 0.04);
+}
+
+.ai .tech-badge:hover {
+  border-color: rgba(168, 85, 247, 0.35);
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.04);
+}
+
+/* ========================================
+   CONTACT SECTION
+======================================== */
+
+.section-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  padding: 20px 5vw;
+  transform: translateY(100%);
+}
+
+.contact-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  width: 100%;
+  max-width: 1100px;
+  padding-right: 22vw;
+}
+
+.contact-info {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.contact-label {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  color: #00d0d3;
+  letter-spacing: 3px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contact-title {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.contact-title span {
+  color: #fff;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  transition: color 0.25s ease;
+}
+
+.contact-detail-item:hover {
+  color: #00d0d3;
+}
+
+.contact-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+}
+
+.contact-detail-item:hover .contact-icon {
+  opacity: 1;
+}
+
+.contact-socials {
+  display: flex;
+  gap: 16px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.45);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.social-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-link:hover {
+  border-color: #00d0d3;
+  color: #00d0d3;
+}
+
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  padding: 14px 18px;
+  outline: none;
+  resize: none;
+  transition: border-color 0.25s ease;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.22);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(0, 208, 211, 0.45);
+}
+
+.form-success {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  color: #00d0d3;
+  letter-spacing: 1px;
+  margin: 4px 0 0;
+}
+
+/* ========================================
+   SCROLL NAV (projects section - inline)
+======================================== */
+
+.scroll-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-nav .scroll-circle {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-nav .scroll-line {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease;
+}
+
+.scroll-nav:hover .scroll-circle {
+  border-color: #00d0d3;
+  box-shadow: 0 0 10px rgba(0, 208, 211, 0.2);
+}
+
+.scroll-nav:hover .scroll-line {
+  background: rgba(0, 208, 211, 0.35);
+}
+
+.scroll-nav--up {
+  flex-direction: column;
+}
+
+.scroll-dot--up {
+  animation: scrollDotUp 1.8s ease-in-out infinite;
+}
+
+/* ========================================
+   SCROLL INDICATOR
+======================================== */
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00d0d3;
+  animation: scrollDot 1.8s ease-in-out infinite;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease;
+}
+
+.scroll-label {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 8px;
+  transition: color 0.3s ease;
+}
+
+.scroll-indicator:hover .scroll-circle {
+  border-color: #00d0d3;
+  box-shadow: 0 0 12px rgba(0, 208, 211, 0.25);
+}
+
+.scroll-indicator:hover .scroll-line {
+  background: rgba(0, 208, 211, 0.4);
+}
+
+.scroll-indicator:hover .scroll-label {
+  color: #00d0d3;
+}
+
+/* ========================================
+   KEYFRAMES
+======================================== */
+
+@keyframes slideIn {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  0%   { transform: translateX(0); opacity: 1; }
+  99%  { transform: translateX(100%); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes scrollDot {
+  0%, 100% { transform: translateY(-7px); opacity: 1; }
+  55%       { transform: translateY(7px);  opacity: 0.2; }
+}
+
+@keyframes scrollDotUp {
+  0%, 100% { transform: translateY(7px);  opacity: 1; }
+  55%       { transform: translateY(-7px); opacity: 0.2; }
+}
