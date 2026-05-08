@@ -15,6 +15,10 @@
     </script>
   </head>
   <body>
+    <!-- Custom cursor -->
+    <div id="cursor-trail-container"></div>
+    <div id="cursor-ring"></div>
+    <div id="cursor-dot-center"></div>
 
     <canvas id="three-canvas"></canvas>
 
@@ -52,10 +56,10 @@
 
     <!-- Contenitore sezioni -->
     <div class="sections-wrapper">
-
       <!-- Sezione 0: Home -->
       <section class="section section-home">
         <div class="hero-left">
+          <p class="section-label">01 — ABOUT ME</p>
           <div class="name-block">
             <div class="name-row">
               <h1 id="name">ANDREA</h1>
@@ -74,137 +78,419 @@
             </div>
           </div>
 
-          <p class="hero-role">FRONT-END DEVELOPER</p>
+          <p class="hero-role">JR. FULL-STACK DEVELOPER</p>
 
           <p class="hero-desc">
-            Creo esperienze digitali interattive<br>
-            con attenzione ai dettagli e passione<br>
-            per il clean code.
+            Creo siti e applicazioni web intuitive e moderne, dove la passione e
+            la cura per i dettagli incontrano curiosità e creatività.
           </p>
-
-          <button class="cta-btn">
-            SCOPRI DI PIÙ <span class="cta-arrow">→</span>
-          </button>
         </div>
 
         <a class="scroll-indicator" href="#">
-          <div class="scroll-circle">
-            <span class="scroll-dot"></span>
+          <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
           </div>
-          <div class="scroll-line"></div>
-          <span class="scroll-label">SCROLL</span>
         </a>
       </section>
 
       <!-- Sezione 1: Projects -->
 
       <section class="section section-projects">
+        <p class="section-label">02 — PROJECTS</p>
+        <div class="projects-pages-wrapper">
+          <canvas id="projects-canvas"></canvas>
+          <div class="projects-page">
+            <div class="projects-grid">
+              <div
+                class="project-card"
+                data-year="2025"
+                data-desc="EasyWallet è un'applicazione web full-stack per il tracciamento delle finanze personali. Permette di registrare entrate e uscite, categorizzare le spese, visualizzare statistiche mensili con grafici interattivi e impostare budget per categoria. Il backend espone REST API protette con JWT, mentre il frontend Angular offre un'interfaccia reattiva e ottimizzata per mobile."
+                data-site="#"
+                data-github="https://github.com/imaluris/EasyWallet"
+              >
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>ON GITHUB</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <img
+                    class="card-img"
+                    src="/assets/project/EasyWallet.png"
+                    alt="EasyWallet project"
+                  />
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB APP</p>
+                  <h2 class="card-title">EasyWallet</h2>
+                  <p class="card-desc">
+                    App per la gestione delle finanze personali
+                  </p>
+                  <div class="card-tags">
+                    <span class="card-tag">HTML</span>
+                    <span class="card-tag">CSS</span>
+                    <span class="card-tag">JavaScript</span>
+                    <span class="card-tag">Node.js</span>
+                    <span class="card-tag">Express</span>
+                    <span class="card-tag">MySql</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
 
-        <a class="scroll-nav scroll-nav--up" href="#">
-          <div class="scroll-line"></div>
-          <div class="scroll-circle">
-            <span class="scroll-dot scroll-dot--up"></span>
+              <div
+                class="project-card"
+                data-year="2025"
+                data-desc="Web app per avventure narrative interattive ambientate nella Valnerina. Il giocatore esplora location reali tramite GPS, sblocca capitoli della storia in base alla posizione e risolve enigmi legati al territorio. Ogni scelta narrativa influenza il finale. Sviluppata con React e pensata per un utilizzo da mobile nel browser."
+                data-site="#"
+                data-github="https://github.com/imaluris/OmbraDellaValnerina"
+              >
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>IN PROGRESS</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <img
+                    class="card-img card-img--top"
+                    src="/assets/project/ombradellavalnerina.png"
+                    alt="L'ombra della valnerina project"
+                  />
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB APP</p>
+                  <h2 class="card-title">L'ombra della valnerina</h2>
+                  <p class="card-desc">
+                    App per avventure narrative interattive in Valnerina
+                  </p>
+                  <div class="card-tags">
+                    <span class="card-tag">React</span>
+                    <span class="card-tag">CSS</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div
+                class="project-card"
+                data-year="2025"
+                data-desc="Landing page per un ristorante pizzeria umbro. Include menu interattivo con categorie, sezione servizi, galleria fotografica, form di prenotazione e mappa integrata. Layout responsive con design caldo e navigazione a sezione singola."
+                data-site="https://www.andreacastellaniperelli.it/Alcamino/"
+                data-github="https://github.com/imaluris/Alcamino"
+              >
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <img
+                    class="card-img card-img--top"
+                    src="/assets/project/Alcamino.png"
+                    alt="L'ombra della valnerina project"
+                  />
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB SITE</p>
+                  <h2 class="card-title">Al camino</h2>
+                  <p class="card-desc">Sito web della pizzeria Al camino</p>
+                  <div class="card-tags">
+                    <span class="card-tag">HTML</span>
+                    <span class="card-tag">CSS</span>
+                    <span class="card-tag">JavaScript</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div
+                class="project-card"
+                data-year="2025"
+                data-desc="Sito web per un'associazione di guide naturalistiche della Valnerina. Presenta il team, i percorsi escursionistici con mappe interattive, un sistema di prenotazione delle escursioni e una sezione blog per le news dell'associazione. Design ispirato alla natura locale con palette terrosa e fotografie d'ambiente."
+                data-site="https://www.andreacastellaniperelli.it/WildLife/"
+                data-github="https://github.com/imaluris/WildLife"
+              >
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <img
+                    class="card-img"
+                    src="/assets/project/WildLifer.png"
+                    alt="WildLife project"
+                  />
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB SITE</p>
+                  <h2 class="card-title">WildLife</h2>
+                  <p class="card-desc">
+                    Sito web per associazione guide naturali
+                  </p>
+                  <div class="card-tags">
+                    <span class="card-tag">HTML</span>
+                    <span class="card-tag">CSS</span>
+                    <span class="card-tag">JavaScript</span>
+                    <span class="card-tag">Tailwind CSS</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div
+                class="project-card"
+                data-year="2025"
+                data-desc="Portfolio fotografico personale sviluppato interamente da zero senza framework. Il sito presenta una galleria dinamica con lightbox custom, lazy loading delle immagini ad alta risoluzione e un sistema di categorizzazione dei servizi fotografici. Design minimal orientato alla valorizzazione delle immagini, con animazioni CSS fluide."
+                data-site="https://www.andreacastellaniperelli.it/Photographer/"
+                data-github="https://github.com/imaluris/ACPPhotographer"
+              >
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <img
+                    class="card-img"
+                    src="/assets/project/ACPPhotographer.png"
+                    alt="ACPPhotographer project"
+                  />
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB SITE</p>
+                  <h2 class="card-title">ACPPhotographer</h2>
+                  <p class="card-desc">Portfolio fotografico personale</p>
+                  <div class="card-tags">
+                    <span class="card-tag">HTML</span>
+                    <span class="card-tag">CSS</span>
+                    <span class="card-tag">JavaScript</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div
+                class="project-card"
+                data-year="2023"
+                data-desc="E-commerce per la vendita di sigarette elettroniche e prodotti correlati. Integra un catalogo prodotti avanzato con filtri per categoria, varianti e prezzi, carrello con gestione quantità.  Presente area user e admin."
+                data-site="#"
+                data-github="https://github.com/imaluris/E-Cigs"
+              >
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>ON GITHUB</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <img
+                    class="card-img"
+                    src="/assets/project/E-cigs.jpg"
+                    alt="E-cigs project"
+                  />
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB APP</p>
+                  <h2 class="card-title">E-cigs</h2>
+                  <p class="card-desc">
+                    E-commerce per la vendita di prodotti e-cig
+                  </p>
+                  <div class="card-tags">
+                    <span class="card-tag">Angular</span>
+                    <span class="card-tag">Spring</span>
+                    <span class="card-tag">MySql</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+            </div>
           </div>
-        </a>
 
-        <div class="projects-grid">
+          <!-- =====================================================
+             PAGINA 2 — Template per i prossimi 6 progetti
+             Rimuovere i commenti /* e */ attorno al blocco
+             quando si aggiungono i progetti reali
+        ====================================================== -->
+          <!--<div class="projects-page">
+            <div class="projects-grid">
+              <div class="project-card">
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <div class="card-img-placeholder"></div>
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB APP</p>
+                  <h2 class="card-title">Progetto 7</h2>
+                  <p class="card-desc">Descrizione del progetto</p>
+                  <div class="card-tags">
+                    <span class="card-tag">React</span>
+                    <span class="card-tag">Node.js</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
 
-          <div class="project-card">
-            <div class="card-body">
-              <h2 class="card-title">ECHO</h2>
-              <p class="card-desc">Piattaforma per la gestione di eventi e community.</p>
-              <a href="#" class="card-link">VIEW PROJECT <span>→</span></a>
-            </div>
-            <div class="card-mockup">
-              <img class="card-img" src="https://placehold.co/600x400/0a0818/7c3aed?text=Screenshot" alt="Echo project" />
+              <div class="project-card">
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <div class="card-img-placeholder"></div>
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB SITE</p>
+                  <h2 class="card-title">Progetto 8</h2>
+                  <p class="card-desc">Descrizione del progetto</p>
+                  <div class="card-tags">
+                    <span class="card-tag">WordPress</span>
+                    <span class="card-tag">Elementor Pro</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <div class="card-img-placeholder"></div>
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB APP</p>
+                  <h2 class="card-title">Progetto 9</h2>
+                  <p class="card-desc">Descrizione del progetto</p>
+                  <div class="card-tags">
+                    <span class="card-tag">Angular</span>
+                    <span class="card-tag">Spring</span>
+                    <span class="card-tag">MySQL</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <div class="card-img-placeholder"></div>
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// APP</p>
+                  <h2 class="card-title">Progetto 10</h2>
+                  <p class="card-desc">Descrizione del progetto</p>
+                  <div class="card-tags">
+                    <span class="card-tag">Android</span>
+                    <span class="card-tag">Java</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <div class="card-img-placeholder"></div>
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB APP</p>
+                  <h2 class="card-title">Progetto 11</h2>
+                  <p class="card-desc">Descrizione del progetto</p>
+                  <div class="card-tags">
+                    <span class="card-tag">TypeScript</span>
+                    <span class="card-tag">Express</span>
+                    <span class="card-tag">MongoDB</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
+
+              <div class="project-card">
+                <div class="card-topbar">
+                  <span class="card-live"
+                    ><span class="card-live-dot"></span>LIVE</span
+                  >
+                </div>
+                <div class="card-mockup">
+                  <div class="card-img-placeholder"></div>
+                </div>
+                <div class="card-body">
+                  <p class="card-type">// WEB SITE</p>
+                  <h2 class="card-title">Progetto 12</h2>
+                  <p class="card-desc">Descrizione del progetto</p>
+                  <div class="card-tags">
+                    <span class="card-tag">HTML</span>
+                    <span class="card-tag">CSS</span>
+                    <span class="card-tag">JavaScript</span>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <a href="#" class="card-link">./view <span>→</span></a>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="project-card">
-            <div class="card-body">
-              <h2 class="card-title">FLOW</h2>
-              <p class="card-desc">App per il monitoraggio di abitudini e produttività.</p>
-              <a href="#" class="card-link">VIEW PROJECT <span>→</span></a>
-            </div>
-            <div class="card-mockup">
-              <img class="card-img" src="https://placehold.co/600x400/07101a/00d0d3?text=Screenshot" alt="Flow project" />
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="card-body">
-              <h2 class="card-title">NEXUS</h2>
-              <p class="card-desc">Dashboard analytics per dati complessi.</p>
-              <a href="#" class="card-link">VIEW PROJECT <span>→</span></a>
-            </div>
-            <div class="card-mockup">
-              <img class="card-img" src="https://placehold.co/600x400/07071a/5a00a3?text=Screenshot" alt="Nexus project" />
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="card-body">
-              <h2 class="card-title">PULSE</h2>
-              <p class="card-desc">Sistema di notifiche real-time per team distribuiti.</p>
-              <a href="#" class="card-link">VIEW PROJECT <span>→</span></a>
-            </div>
-            <div class="card-mockup">
-              <img class="card-img" src="https://placehold.co/600x400/070d18/00d0d3?text=Screenshot" alt="Pulse project" />
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="card-body">
-              <h2 class="card-title">VOID</h2>
-              <p class="card-desc">Editor collaborativo per documentazione tecnica.</p>
-              <a href="#" class="card-link">VIEW PROJECT <span>→</span></a>
-            </div>
-            <div class="card-mockup">
-              <img class="card-img" src="https://placehold.co/600x400/080818/7c3aed?text=Screenshot" alt="Void project" />
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div class="card-body">
-              <h2 class="card-title">AXIS</h2>
-              <p class="card-desc">Piattaforma e-commerce con AI recommendation.</p>
-              <a href="#" class="card-link">VIEW PROJECT <span>→</span></a>
-            </div>
-            <div class="card-mockup">
-              <img class="card-img" src="https://placehold.co/600x400/07100d/00d0d3?text=Screenshot" alt="Axis project" />
-            </div>
-          </div>
-
+        -->
+          <!-- Fine pagina 2 -->
         </div>
 
         <a class="scroll-nav scroll-nav--down" href="#">
-          <div class="scroll-circle">
-            <span class="scroll-dot"></span>
+          <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
           </div>
-          <div class="scroll-line"></div>
-          <span class="scroll-label">SCROLL</span>
         </a>
-
       </section>
 
       <!-- Sezione 2: Tech Stack -->
       <section class="section section-techstack">
-
-        <a class="scroll-nav scroll-nav--up" href="#">
-          <div class="scroll-line"></div>
-          <div class="scroll-circle">
-            <span class="scroll-dot scroll-dot--up"></span>
-          </div>
-        </a>
+        <canvas id="tech-canvas"></canvas>
 
         <div class="techstack-content">
           <div class="techstack-heading">
-            <p class="techstack-label">03 — TECH STACK</p>
-            <h2 class="techstack-title">Le tecnologie che uso<br>ogni giorno.</h2>
+            <p class="section-label">03 — TECH STACK</p>
+            <h2 class="techstack-title">
+              Le tecnologie che uso<br />ogni giorno.
+            </h2>
           </div>
 
           <div class="techstack-groups">
-
             <div class="tech-group frontend">
               <div class="tech-group-header">
                 <span class="tech-group-name">FRONTEND</span>
@@ -269,94 +555,227 @@
                 <span class="tech-badge">Claude Design</span>
               </div>
             </div>
-
           </div>
         </div>
 
         <a class="scroll-nav scroll-nav--down" href="#">
-          <div class="scroll-circle">
-            <span class="scroll-dot"></span>
+          <div class="mouse-icon">
+            <div class="mouse-wheel"></div>
           </div>
-          <div class="scroll-line"></div>
-          <span class="scroll-label">SCROLL</span>
         </a>
-
       </section>
 
       <!-- Sezione 3: Contact -->
       <section class="section section-contact">
-
-        <a class="scroll-nav scroll-nav--up" href="#">
-          <div class="scroll-line"></div>
-          <div class="scroll-circle">
-            <span class="scroll-dot scroll-dot--up"></span>
-          </div>
-        </a>
+        <canvas id="contact-canvas"></canvas>
 
         <div class="contact-content">
-
           <div class="contact-info">
-            <p class="contact-label">04 — CONTACT</p>
-            <h2 class="contact-title">Hai un progetto<br>in mente?<br><span>Parliamone.</span></h2>
+            <p class="section-label">04 — CONTACT</p>
+            <h2 class="contact-title">
+              Hai un progetto<br />in mente?<br /><span>Parliamone.</span>
+            </h2>
 
             <div class="contact-details">
-              <a href="tel:+39333000000" class="contact-detail-item">
-                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.47 11.47 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/>
+              <a href="tel:+393926289669" class="contact-detail-item">
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.47 11.47 0 0 0 3.58.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"
+                  />
                 </svg>
-                <span>+39 333 000 0000</span>
+                <span>+39 3926289669</span>
               </a>
-              <a href="mailto:a.castellaniperelli@gmail.com" class="contact-detail-item">
-                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+              <a
+                href="mailto:a.castellaniperelli@gmail.com"
+                class="contact-detail-item"
+              >
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"
+                  />
                 </svg>
                 <span>a.castellaniperelli@gmail.com</span>
               </a>
             </div>
 
+            <div class="contact-actions">
+            <a
+              href="/assets/CV_Andrea_Castellani_Perelli.pdf"
+              download
+              class="cv-btn"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="14"
+                height="14"
+              >
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+              </svg>
+              SCARICA CV
+            </a>
+
             <div class="contact-socials">
-              <a href="https://linkedin.com/in/" target="_blank" class="social-link" aria-label="LinkedIn">
+              <a
+                href="https://www.linkedin.com/in/andrea-castellani-perelli/"
+                target="_blank"
+                class="social-link"
+                aria-label="LinkedIn"
+              >
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
                 </svg>
               </a>
-              <a href="https://github.com/" target="_blank" class="social-link" aria-label="GitHub">
+              <a
+                href="https://github.com/imaluris"
+                target="_blank"
+                class="social-link"
+                aria-label="GitHub"
+              >
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                  />
                 </svg>
               </a>
+            </div>
             </div>
           </div>
 
           <!-- Sostituisci YOUR_FORM_ID con il tuo ID da formspree.io -->
-          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/xnjwbbae"
+            method="POST"
+          >
             <div class="form-row">
               <div class="form-group">
-                <input type="text" name="nome" placeholder="NOME" required autocomplete="off" />
+                <input
+                  type="text"
+                  name="nome"
+                  placeholder="NOME"
+                  required
+                  autocomplete="off"
+                />
               </div>
               <div class="form-group">
-                <input type="email" name="email" placeholder="EMAIL" required autocomplete="off" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="EMAIL"
+                  required
+                  autocomplete="off"
+                />
               </div>
             </div>
             <div class="form-group">
-              <input type="text" name="oggetto" placeholder="OGGETTO" autocomplete="off" />
+              <input
+                type="text"
+                name="oggetto"
+                placeholder="OGGETTO"
+                autocomplete="off"
+              />
             </div>
             <div class="form-group">
-              <textarea name="messaggio" placeholder="MESSAGGIO" rows="5" required></textarea>
+              <textarea
+                name="messaggio"
+                placeholder="MESSAGGIO"
+                rows="6"
+                required
+              ></textarea>
             </div>
             <button type="submit" class="cta-btn">
               INVIA MESSAGGIO <span class="cta-arrow">→</span>
             </button>
-            <p class="form-success" style="display:none;">Messaggio inviato! Ti risponderò il prima possibile.</p>
+            <p class="form-success" style="display: none">
+              Messaggio inviato! Ti risponderò il prima possibile.
+            </p>
           </form>
+        </div>
+      </section>
+    </div>
 
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal-overlay" aria-hidden="true">
+      <div class="modal-panel">
+        <div class="modal-corner modal-corner--tl"></div>
+        <div class="modal-corner modal-corner--tr"></div>
+        <div class="modal-corner modal-corner--bl"></div>
+        <div class="modal-corner modal-corner--br"></div>
+
+        <button class="modal-close" aria-label="Chiudi">
+          <span></span><span></span>
+        </button>
+
+        <div class="modal-left">
+          <div class="modal-img-wrap">
+            <img class="modal-img" src="" alt="" />
+            <div class="modal-img-bg"></div>
+          </div>
         </div>
 
-      </section>
+        <div class="modal-right">
+          <div class="modal-meta">
+            <span class="modal-type-badge"></span>
+            <span class="modal-year-badge"></span>
+          </div>
 
+          <div class="modal-status-row">
+            <span class="card-live-dot"></span>
+            <span class="modal-status-text"></span>
+          </div>
+
+          <h2 class="modal-title"></h2>
+          <p class="modal-desc"></p>
+
+          <div class="modal-stack-label">// STACK</div>
+          <div class="modal-tags"></div>
+
+          <div class="modal-actions">
+            <a
+              class="modal-btn modal-btn--primary"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              VISITA SITO <span class="modal-btn-arrow">→</span>
+            </a>
+            <a
+              class="modal-btn modal-btn--secondary"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="14"
+                height="14"
+              >
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              GITHUB
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="/js/three-scene.js"></script>
     <script type="module" src="/js/scroll.js"></script>
+    <script src="/js/effects.js"></script>
+    <script src="/js/modal.js"></script>
   </body>
 </html>

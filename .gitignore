@@ -1,0 +1,33 @@
+# Cartella di staging per hosting
+Per hosting/
+
+# Dipendenze Node
+node_modules/
+
+# Log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Variabili d'ambiente
+.env
+.env.local
+.env.*.local
+
+# Output di build (se mai aggiunti)
+dist/
+build/

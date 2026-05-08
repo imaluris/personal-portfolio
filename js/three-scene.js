@@ -26,7 +26,7 @@ function init() {
     1000
   );
 
-  camera.position.z = 3.5;
+  camera.position.z = 3.3;
 
   renderer = new THREE.WebGLRenderer({
     canvas,
@@ -71,7 +71,7 @@ function loadModel() {
   const loader = new GLTFLoader();
 
   loader.load(
-    '/assets/scene.gltf',
+    '/assets/scene2.glb',
     (gltf) => {
       const model = gltf.scene;
       model.visible = false;
@@ -87,8 +87,9 @@ function loadModel() {
 }
 
 function createSpheresFromModel(model) {
-  let yMin = Infinity;
-  let yMax = -Infinity;
+  let xMin = Infinity, xMax = -Infinity;
+  let yMin = Infinity, yMax = -Infinity;
+  let zMin = Infinity, zMax = -Infinity;
 
   const allVertices = [];
 
@@ -102,11 +103,21 @@ function createSpheresFromModel(model) {
 
         allVertices.push(vertex.clone());
 
+        if (vertex.x < xMin) xMin = vertex.x;
+        if (vertex.x > xMax) xMax = vertex.x;
         if (vertex.y < yMin) yMin = vertex.y;
         if (vertex.y > yMax) yMax = vertex.y;
+        if (vertex.z < zMin) zMin = vertex.z;
+        if (vertex.z > zMax) zMax = vertex.z;
       }
     }
   });
+
+  const center = new THREE.Vector3(
+    (xMin + xMax) / 2,
+    (yMin + yMax) / 2,
+    (zMin + zMax) / 2
+  );
 
   const totalHeight = yMax - yMin;
   const NUM_SECTIONS = 100;
@@ -141,7 +152,7 @@ function createSpheresFromModel(model) {
 
     const sphere = new THREE.Mesh(sphereGeometry, material);
 
-    const targetPosition = vertex.clone();
+    const targetPosition = vertex.clone().sub(center);
     const startPosition = getRandomStartPosition(targetPosition);
 
     sphere.position.copy(startPosition);
