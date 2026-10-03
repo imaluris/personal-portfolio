@@ -1,3 +1,5 @@
+import { isStackActive, setStackActive } from './projects-stack.js';
+
 const sections       = document.querySelectorAll('.section');
 const navItems       = document.querySelectorAll('.nav-item[data-section]');
 const canvas         = document.getElementById('three-canvas');
@@ -11,6 +13,11 @@ let isAnimating   = false;
 let lastWheelNav  = 0;
 
 const totalCardPages = cardPages.length;
+
+// Nei Progetti (desktop) c'è lo stack infinito: la rotella muove le card e non cambia sezione.
+// Le pagine card vengono usate solo quando lo stack non c'è (mobile).
+const inStack      = () => currentIndex === PROJECTS_INDEX && isStackActive();
+const inCardPages  = () => currentIndex === PROJECTS_INDEX && !isStackActive();
 
 // Posiziona le pagine card: prima visibile, le altre sotto
 cardPages.forEach((page, i) => {
@@ -91,18 +98,20 @@ function goToSection(newIndex) {
   });
 
   currentIndex = newIndex;
+  setStackActive(newIndex === PROJECTS_INDEX);
   setTimeout(() => { isAnimating = false; }, 820);
 }
 
 // Rotella del mouse / trackpad
 window.addEventListener('wheel', (e) => {
+  if (inStack()) return; // nei Progetti la rotella è dello stack
   if (isAnimating) return;
   if (Math.abs(e.deltaY) < 15) return;
   const now = Date.now();
   if (now - lastWheelNav < 1200) return;
   lastWheelNav = now;
 
-  if (currentIndex === PROJECTS_INDEX) {
+  if (inCardPages()) {
     if (e.deltaY > 0 && cardPageIndex < totalCardPages - 1) {
       goToCardPage(cardPageIndex + 1);
       return;
@@ -126,7 +135,7 @@ document.querySelector('.scroll-indicator')?.addEventListener('click', (e) => {
 document.querySelectorAll('.scroll-nav--up').forEach(el => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
-    if (currentIndex === PROJECTS_INDEX && cardPageIndex > 0) {
+    if (inCardPages() && cardPageIndex > 0) {
       goToCardPage(cardPageIndex - 1);
     } else {
       goToSection(currentIndex - 1);
@@ -137,7 +146,7 @@ document.querySelectorAll('.scroll-nav--up').forEach(el => {
 document.querySelectorAll('.scroll-nav--down').forEach(el => {
   el.addEventListener('click', (e) => {
     e.preventDefault();
-    if (currentIndex === PROJECTS_INDEX && cardPageIndex < totalCardPages - 1) {
+    if (inCardPages() && cardPageIndex < totalCardPages - 1) {
       goToCardPage(cardPageIndex + 1);
     } else {
       goToSection(currentIndex + 1);
@@ -162,6 +171,7 @@ window.addEventListener('touchstart', (e) => {
 
 window.addEventListener('touchend', (e) => {
   if (document.getElementById('project-modal')?.classList.contains('is-open')) return;
+  if (inStack()) return;
 
   const dy = _touchY - e.changedTouches[0].clientY;
   if (Math.abs(dy) < 45) return;
@@ -175,7 +185,7 @@ window.addEventListener('touchend', (e) => {
     if (dy < 0 && scroller.scrollTop > 4) return;
   }
 
-  if (currentIndex === PROJECTS_INDEX) {
+  if (inCardPages()) {
     if (dy > 0 && cardPageIndex < totalCardPages - 1) { goToCardPage(cardPageIndex + 1); return; }
     if (dy < 0 && cardPageIndex > 0) { goToCardPage(cardPageIndex - 1); return; }
   }

@@ -1,0 +1,144 @@
+/* ========================================
+   PROJECTS — STACK DIAGONALE (solo desktop)
+   Le .project-card diventano uno stack 3D infinito. Logica in js/projects-stack.js
+   e js/diagonal-stack/. Sotto i 768px non si applica nulla: resta la griglia.
+======================================== */
+
+@media (min-width: 769px) {
+  /* Contenitore: copre la sezione, sotto etichetta e frecce */
+  .projects-stack {
+    position: absolute;
+    inset: 0 12vw 0 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .section-projects .section-label {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* La griglia a pagine non serve più: resta solo il canvas di sfondo */
+  .section-projects.is-stack .projects-pages-wrapper {
+    pointer-events: none;
+  }
+
+  /* ---------- Scena ---------- */
+
+  .ds-stage {
+    touch-action: none;
+  }
+
+  /* Scena a dimensione fissa, scalata via JS. La prospettiva è impostata da JS. */
+  .ds-scene {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+  }
+
+  /* Contesto 3D. pointer-events: none perché il suo piano trasparente (profondità 0)
+     coprirebbe le card più lontane e l'hover funzionerebbe solo sulla prima. */
+  .ds-world {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+
+  /* ---------- Card ---------- */
+
+  .project-card.ds-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: visible; /* serve per vedere l'etichetta fuori dalla card */
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    user-select: none;
+    /* il transform lo scrive il JS ogni frame: nessuna transizione */
+    transition: border-color 0.3s ease;
+  }
+
+  .project-card.ds-card:hover {
+    transform: none; /* il sollevamento in hover lo gestisce lo stack */
+  }
+
+  /* L'hover lo decide lo stack (classe .is-hovered), non il :hover del browser:
+     la card sotto un'altra trasparente può essere in hover senza essere quella "toccata".
+     Qui si ripetono gli stili di :hover di projects.css, legati alla classe. */
+  .project-card.ds-card:hover:not(.is-hovered) { border-color: rgba(255, 255, 255, 0.07); }
+  .project-card.ds-card.is-hovered { border-color: rgba(124, 58, 237, 0.55); }
+
+  .ds-card:hover:not(.is-hovered) .card-link { gap: 8px; }
+  .ds-card.is-hovered .card-link { gap: 14px; }
+
+  .ds-card:hover:not(.is-hovered) .card-img { filter: brightness(0.78) saturate(0.82); }
+  .ds-card.is-hovered .card-img { filter: brightness(0.95) saturate(1); }
+
+  /* Zona invisibile sotto la card: quando si alza in hover, il mouse resta
+     sulla card anche sul bordo inferiore (altrimenti tremolerebbe). */
+  .ds-card::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 34px;
+  }
+
+  /* Angoli arrotondati senza overflow:hidden sulla card */
+  .ds-card .card-topbar { border-radius: 8px 8px 0 0; }
+  .ds-card .card-footer { border-radius: 0 0 8px 8px; }
+
+  .ds-card__number {
+    position: absolute;
+    top: -22px;
+    left: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  /* ---------- Hover: linea bianca + nome del progetto ---------- */
+
+  .ds-card__label {
+    position: absolute;
+    left: 100%;
+    top: 62%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    pointer-events: none;
+    /* Porta l'etichetta davanti alle card vicine, così non viene coperta */
+    transform: translateZ(80px);
+  }
+
+  .ds-card__line {
+    display: block;
+    width: 160px;
+    height: 2px;
+    background: #a855f7;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .ds-card__name {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #a855f7;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease 0.12s, transform 0.3s ease 0.12s;
+  }
+
+  .ds-card.is-hovered .ds-card__line { transform: scaleX(1); }
+  .ds-card.is-hovered .ds-card__name { opacity: 1; transform: none; }
+}

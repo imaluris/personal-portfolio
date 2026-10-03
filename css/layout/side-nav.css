@@ -1,0 +1,147 @@
+/* ========================================
+   SIDE NAV
+   Menu laterale a destra; sotto i 768px diventa una barra in basso.
+======================================== */
+
+/* ========================================
+   SIDE NAV
+======================================== */
+
+.side-nav {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  padding-right: 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.nav-num {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  color: #a855f7;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.nav-item.active .nav-num {
+  color: #00d0d3;
+}
+
+.nav-dash {
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: #a855f7;
+}
+
+.nav-item.active .nav-dash {
+  background: #00d0d3;
+}
+
+.nav-label {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.nav-item.active .nav-label {
+  color: #fff;
+}
+
+.nav-item:hover:not(.active) .nav-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Responsive: 1025px – 1600px ---------- */
+
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .nav-label {
+    font-size: 2.2vw;
+  }
+}
+
+/* ---------- Responsive: tablet ≤ 1024px ---------- */
+
+@media (max-width: 1024px) {
+  .nav-label {
+    display: none;
+  }
+}
+
+/* ---------- Responsive: 769px – 1024px: nav sul bordo ---------- */
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .side-nav {
+    padding-right: 10px;
+  }
+}
+
+/* ---------- Responsive: mobile ≤ 768px: side nav → bottom tab bar ---------- */
+
+@media (max-width: 768px) {
+  /* ---- Side nav → bottom tab bar ---- */
+  .side-nav {
+    position: fixed;
+    right: auto;
+    top: auto;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transform: none;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 1000;
+    gap: 0;
+  }
+
+  .nav-item {
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 0;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-label { display: none; }
+
+  .nav-indicator {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-num { font-size: 11px; }
+  .nav-dash { width: 18px; }
+}

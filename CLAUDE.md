@@ -36,9 +36,27 @@ Key variables: `spheresGroup` (THREE.Group), `particlesData[]` (per-particle ani
 
 Renderer uses `alpha: true` and limits pixel ratio to 2 for performance.
 
-### Styling (`css/style.css`)
+### Styling (`css/`)
 
-Color palette: black background, cyan `#00d0d3` accent, purple `#5a00a3` / violet `#7c3aed`. Fullscreen flex layout (`100vw × 100vh`). Key animations: `slideIn` (name text), `slideOut` (reveal mask). The stylesheet also contains HUD element styles (circles, lines, dots) that are not currently used in the HTML.
+`css/style.css` contains no rules: it only `@import`s the other files, in cascade order (the order matters). The index is what `index.html` links.
+
+- `base/` — `reset.css` (box-sizing, body), `cursor.css` (custom cursor, disabled on touch)
+- `layout/` — `sections.css` (3D canvas + sections container), `side-nav.css`, `scroll-indicators.css`
+- `components/` — `section-label.css`, `modal.css`, `cookie-banner.css`
+- `sections/` — one file per section: `home.css`, `projects.css`, `projects-stack.css` (diagonal 3D stack, desktop only), `techstack.css`, `contact.css`
+
+Each file keeps its own responsive `@media` rules at the bottom. New styles go in the file of the section/component they belong to; a new file must also be added to `style.css`.
+
+Color palette: black background, cyan `#00d0d3` accent, purple `#5a00a3` / violet `#7c3aed`. Fullscreen flex layout (`100vw × 100vh`). Key animations: `slideIn` (name text), `slideOut` (reveal mask), both in `sections/home.css`. That file also contains HUD element styles (circles, lines, dots) that are not currently used in the HTML.
+
+### Projects stack (`js/projects-stack.js`, `js/diagonal-stack/`)
+
+On desktop (>768px) the `.project-card` elements of the Projects section become an infinite diagonal 3D stack (virtual scroll, own spring physics, no libraries). On mobile (≤768px) nothing changes: the paged grid stays.
+
+- `projects-stack.js` mounts/unmounts the stack on the breakpoint and moves the existing cards into it (they go back to their `.projects-page` on unmount). It is imported by `scroll.js`.
+- In the Projects section the wheel only moves the cards (`scroll.js` ignores it there); you leave via the mouse icon or the side nav.
+- `diagonal-stack/config.js` holds every number to tweak (card size, angle, spacing, curve, hover lift). `stack.js` builds the scene, `card.js` adopts a card, `input.js` handles wheel/touch/keys.
+- Clicking a card still opens the modal (`js/modal.js`, unchanged).
 
 ### Assets
 

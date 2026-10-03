@@ -1,0 +1,317 @@
+/* ========================================
+   PROJECT MODAL
+   Finestra di dettaglio che si apre cliccando una card progetto.
+======================================== */
+
+/* ========================================
+   PROJECT MODAL
+======================================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-panel {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  background: #080814;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+  transform: translateY(28px) scale(0.97);
+  transition: transform 0.38s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.modal-overlay.is-open .modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+/* HUD corners */
+.modal-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  z-index: 2;
+  pointer-events: none;
+}
+.modal-corner--tl { top: 0;  left: 0;  border-top: 1px solid #00d0d3; border-left: 1px solid #00d0d3; }
+.modal-corner--tr { top: 0;  right: 0; border-top: 1px solid #00d0d3; border-right: 1px solid #00d0d3; }
+.modal-corner--bl { bottom: 0; left: 0;  border-bottom: 1px solid #00d0d3; border-left: 1px solid #00d0d3; }
+.modal-corner--br { bottom: 0; right: 0; border-bottom: 1px solid #00d0d3; border-right: 1px solid #00d0d3; }
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: border-color 0.2s ease;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.modal-close:hover {
+  border-color: #00d0d3;
+}
+
+.modal-close span {
+  position: absolute;
+  width: 12px;
+  height: 1.5px;
+  background: rgba(255, 255, 255, 0.6);
+  transition: background 0.2s ease;
+}
+
+.modal-close:hover span {
+  background: #00d0d3;
+}
+
+.modal-close span:first-child { transform: rotate(45deg); }
+.modal-close span:last-child  { transform: rotate(-45deg); }
+
+/* Left — image */
+.modal-left {
+  flex: 0 0 48%;
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+}
+
+.modal-img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.75) saturate(0.8);
+}
+
+.modal-img-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0, 208, 211, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 208, 211, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.modal-img-bg.is-placeholder {
+  background:
+    linear-gradient(rgba(0, 208, 211, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 208, 211, 0.06) 1px, transparent 1px),
+    linear-gradient(135deg, #060612 0%, #0d0522 100%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+}
+
+/* Right — content */
+.modal-right {
+  flex: 1;
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.modal-right::-webkit-scrollbar { display: none; }
+
+.modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-type-badge {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.modal-year-badge {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: rgba(124, 58, 237, 0.7);
+  padding: 2px 7px;
+  border: 1px solid rgba(124, 58, 237, 0.25);
+}
+
+.modal-status-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.modal-status-text {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  color: #00d0d3;
+}
+
+.modal-title {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.3px;
+  line-height: 1.1;
+}
+
+.modal-desc {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.85;
+  margin: 0;
+}
+
+.modal-stack-label {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: 4px;
+}
+
+.modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.modal-tags .card-tag {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-color: rgba(0, 208, 211, 0.18);
+  color: rgba(0, 208, 211, 0.7);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 8px;
+  flex-wrap: wrap;
+}
+
+.modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.modal-btn--primary {
+  border: 1px solid rgba(0, 208, 211, 0.5);
+  color: #00d0d3;
+  background: rgba(0, 208, 211, 0.05);
+}
+
+.modal-btn--primary:hover {
+  background: rgba(0, 208, 211, 0.12);
+  border-color: #00d0d3;
+}
+
+.modal-btn--primary:hover .modal-btn-arrow {
+  transform: translateX(4px);
+}
+
+.modal-btn-arrow {
+  font-size: 14px;
+  transition: transform 0.25s ease;
+}
+
+.modal-btn--secondary {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.45);
+  background: transparent;
+}
+
+.modal-btn--secondary:hover {
+  border-color: rgba(168, 85, 247, 0.5);
+  color: #a855f7;
+}
+
+/* ---------- Responsive: mobile ≤ 768px ---------- */
+
+@media (max-width: 768px) {
+  /* ---- Modal ---- */
+  .modal-overlay {
+    z-index: 1100;
+    padding-bottom: 24px;
+    align-items: center;
+  }
+
+  body.modal-open .side-nav {
+    display: none;
+  }
+
+  .modal-panel {
+    flex-direction: column;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+
+  .modal-left {
+    flex: 0 0 200px;
+    min-height: 200px;
+  }
+
+  .modal-right {
+    padding: 22px 18px 18px;
+    overflow-y: visible;
+  }
+
+  .modal-title { font-size: 22px; }
+  .modal-desc  { font-size: 12px; }
+
+  .modal-btn {
+    font-size: 9px;
+    padding: 10px 16px;
+  }
+}

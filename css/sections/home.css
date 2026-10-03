@@ -1,0 +1,294 @@
+/* ========================================
+   SEZIONE 01 — HOME / ABOUT ME
+   HUD decorativo, nome animato, ruolo, descrizione e pulsante.
+======================================== */
+
+.section-home {
+  display: flex;
+  align-items: center;
+}
+
+/* ========================================
+   HUD DECORATIVO
+======================================== */
+
+.hud {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-42%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  width: 500px;
+  height: 500px;
+}
+
+.hud-circle {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+}
+
+.hud-info {
+  position: absolute;
+  top: 6%;
+  right: -8%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hud-info-title {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 2px;
+}
+
+.hud-info-value {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 1px;
+}
+
+.hud-line {
+  position: absolute;
+  background: rgba(124, 58, 237, 0.5);
+}
+
+.hud-line-tr {
+  top: 10%;
+  right: 12%;
+  width: 1px;
+  height: 30px;
+}
+
+.hud-line-br {
+  bottom: 22%;
+  right: 5%;
+  width: 1px;
+  height: 20px;
+}
+
+.hud-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #7c3aed;
+}
+
+.hud-dot-tr {
+  top: calc(10% + 30px);
+  right: calc(12% - 2.5px);
+}
+
+.hud-dot-br {
+  bottom: calc(22% + 20px);
+  right: calc(5% - 2.5px);
+}
+
+/* ========================================
+   HERO SINISTRA
+======================================== */
+
+.hero-left {
+  position: relative;
+  z-index: 1;
+  padding-left: 5vw;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 400px;
+}
+
+/* ========================================
+   NAME ROWS
+======================================== */
+
+.name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-start;
+}
+
+.name-row {
+  position: relative;
+  display: block;
+  font-size: 40px;
+  line-height: 1;
+  overflow: hidden;
+}
+
+.name-row h1 {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 800;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  padding: 6px 14px;
+}
+
+#name     { color: #000; }
+#surname  { color: #fff; }
+#lastname { color: #fff; }
+
+.anim1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #00d0d3;
+  z-index: -2;
+  animation: slideIn 3s ease forwards;
+}
+
+.anim2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #5a00a3;
+  z-index: -2;
+  animation: slideIn 3s ease forwards;
+}
+
+.anim3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #5a00a3;
+  background-color: rgba(90, 0, 163, 0.3);
+  z-index: -2;
+  animation: slideIn 3s ease forwards;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  z-index: -1;
+  animation: slideOut 2s ease forwards;
+}
+
+/* ========================================
+   ROLE & DESCRIPTION
+======================================== */
+
+.hero-role {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #00d0d3;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  letter-spacing: 4px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.hero-role::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #00d0d3;
+  flex-shrink: 0;
+}
+
+.hero-desc {
+  color: rgba(255, 255, 255, 0.45);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.9;
+  margin: 0;
+}
+
+/* ========================================
+   CTA BUTTON
+======================================== */
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 11px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-btn:hover {
+  border-color: #00d0d3;
+  color: #00d0d3;
+}
+
+.cta-arrow {
+  font-size: 15px;
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+@keyframes slideIn {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  0%   { transform: translateX(0); opacity: 1; }
+  99%  { transform: translateX(100%); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* ---------- Responsive: mobile ≤ 768px ---------- */
+
+@media (max-width: 768px) {
+  /* ---- Hero ---- */
+  .section-home { padding-bottom: 64px; }
+
+  .hero-left {
+    padding-left: 6vw;
+    padding-right: 6vw;
+    max-width: 100%;
+    gap: 14px;
+  }
+
+  .name-row { font-size: 30px; }
+
+  .hero-role {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+  .hero-role::before { width: 18px; }
+
+  .hero-desc {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+}
+
+/* ---------- Responsive: ≤ 480px ---------- */
+
+@media (max-width: 480px) {
+  .name-row       { font-size: 26px; }
+}
