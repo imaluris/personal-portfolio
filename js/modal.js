@@ -82,6 +82,21 @@
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
   });
 
+  // Set ./view links to the real project URL; clicking navigates out instead of opening the modal
+  document.querySelectorAll('.project-card').forEach(card => {
+    const link = card.querySelector('.card-link');
+    if (!link) return;
+    const siteUrl   = card.dataset.site;
+    const githubUrl = card.dataset.github;
+    const url = (siteUrl && siteUrl !== '#') ? siteUrl : (githubUrl || '#');
+    if (url !== '#') {
+      link.href   = url;
+      link.target = '_blank';
+      link.rel    = 'noopener noreferrer';
+      link.addEventListener('click', e => e.stopPropagation());
+    }
+  });
+
   // Stop wheel events from reaching the section scroll handler when modal is open
   overlay.addEventListener('wheel', e => e.stopPropagation(), { passive: false });
 

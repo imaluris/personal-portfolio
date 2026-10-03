@@ -245,3 +245,54 @@ if (!window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
   window.addEventListener('resize', resize);
   draw();
 })();
+
+// ===========================
+// CONTACT — Form AJAX (Formspree)
+// ===========================
+(function () {
+  const form = document.querySelector('.contact-form');
+  const successMsg = form && form.querySelector('.form-success');
+  if (!form || !successMsg) return;
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.reset();
+        successMsg.style.display = '';
+        btn.style.display = 'none';
+      } else {
+        btn.disabled = false;
+      }
+    } catch (_) {
+      btn.disabled = false;
+    }
+  });
+})();
+
+// ===========================
+// CONTACT — Info obfuscation
+// ===========================
+(function () {
+  const ph = ['+39 3926', '289669'];
+  const em = ['a.castellani', 'perelli@gmail.com'];
+  const phoneVal = ph.join('');
+  const emailVal = em.join('');
+  const pEl = document.getElementById('phone-link');
+  const eEl = document.getElementById('email-link');
+  if (pEl) {
+    pEl.href = 'tel:' + phoneVal.replace(/\s/g, '');
+    pEl.querySelector('span').textContent = phoneVal;
+  }
+  if (eEl) {
+    eEl.href = 'mailto:' + emailVal;
+    eEl.querySelector('span').textContent = emailVal;
+  }
+})();

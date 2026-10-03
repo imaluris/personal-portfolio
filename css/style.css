@@ -321,7 +321,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  padding: 13px 28px;
+  padding: 11px 28px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: transparent;
   color: #fff;
@@ -1338,6 +1338,31 @@ body {
   flex-shrink: 0;
 }
 
+.contact-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.contact-actions .social-link {
+  width: 38px;
+  height: auto;
+  border-color: rgba(124, 58, 237, 0.5);
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.contact-actions .social-link:hover {
+  border-color: #a855f7;
+  color: #a855f7;
+}
+
+.contact-actions .social-link svg {
+  width: 14px;
+  height: 14px;
+}
+
 /* ========================================
    RESPONSIVE
 ======================================== */
@@ -1348,6 +1373,13 @@ body {
   #cursor-ring,
   #cursor-dot-center,
   #cursor-trail-container { display: none !important; }
+}
+
+/* 1025px – 1600px */
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .nav-label {
+    font-size: 2.2vw;
+  }
 }
 
 /* Tablet ≤ 1024px */
@@ -1369,7 +1401,7 @@ body {
   }
 
   .nav-label {
-    font-size: 30px;
+    display: none;
   }
 
   .contact-title {
@@ -1378,6 +1410,19 @@ body {
 
   .techstack-title {
     font-size: 36px;
+  }
+}
+
+/* 769px – 1024px: nav sul bordo, sezioni con padding-right sufficiente */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .side-nav {
+    padding-right: 10px;
+  }
+
+  .section-projects,
+  .section-techstack,
+  .section-contact {
+    padding-right: 56px;
   }
 }
 
@@ -1617,6 +1662,83 @@ body {
   .form-row {
     flex-direction: column;
     gap: 12px;
+  }
+}
+
+/* ========================================
+   COOKIE BANNER
+======================================== */
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9990;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.7rem 2rem;
+  background: rgba(8, 8, 8, 0.96);
+  border-top: 1px solid rgba(0, 208, 211, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.cookie-banner--visible {
+  display: flex;
+}
+
+.cookie-text {
+  margin: 0;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+  font-family: 'Courier New', monospace;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.cookie-btn {
+  padding: 0.3rem 0.9rem;
+  font-size: 0.62rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.1em;
+  border: 1px solid;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+
+.cookie-btn--accept {
+  border-color: #00d0d3;
+  color: #00d0d3;
+}
+
+.cookie-btn--accept:hover {
+  background: #00d0d3;
+  color: #000;
+}
+
+.cookie-btn--decline {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.cookie-btn--decline:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 600px) {
+  .cookie-banner {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    text-align: center;
   }
 }
 

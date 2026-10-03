@@ -36,7 +36,7 @@ Key variables: `spheresGroup` (THREE.Group), `particlesData[]` (per-particle ani
 
 Renderer uses `alpha: true` and limits pixel ratio to 2 for performance.
 
-### Styling (`css/animations.css`)
+### Styling (`css/style.css`)
 
 Color palette: black background, cyan `#00d0d3` accent, purple `#5a00a3` / violet `#7c3aed`. Fullscreen flex layout (`100vw × 100vh`). Key animations: `slideIn` (name text), `slideOut` (reveal mask). The stylesheet also contains HUD element styles (circles, lines, dots) that are not currently used in the HTML.
 

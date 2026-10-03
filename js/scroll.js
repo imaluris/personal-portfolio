@@ -8,6 +8,7 @@ const ease           = 'transform 0.8s cubic-bezier(0.77, 0, 0.175, 1)';
 let currentIndex  = 0;
 let cardPageIndex = 0;
 let isAnimating   = false;
+let lastWheelNav  = 0;
 
 const totalCardPages = cardPages.length;
 
@@ -93,8 +94,14 @@ function goToSection(newIndex) {
   setTimeout(() => { isAnimating = false; }, 820);
 }
 
-// Rotella del mouse
+// Rotella del mouse / trackpad
 window.addEventListener('wheel', (e) => {
+  if (isAnimating) return;
+  if (Math.abs(e.deltaY) < 15) return;
+  const now = Date.now();
+  if (now - lastWheelNav < 1200) return;
+  lastWheelNav = now;
+
   if (currentIndex === PROJECTS_INDEX) {
     if (e.deltaY > 0 && cardPageIndex < totalCardPages - 1) {
       goToCardPage(cardPageIndex + 1);
