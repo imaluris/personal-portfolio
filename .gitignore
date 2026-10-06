@@ -23,6 +23,10 @@ desktop.ini
 *.sln
 *.sw?
 
+# Chat AI: chiave API, log e file dei limiti (restano solo sul server)
+chat/private/config.php
+chat/private/data/
+
 # Variabili d'ambiente
 .env
 .env.local

@@ -26,4 +26,5 @@
 
 /* 5. OVERLAY (sopra a tutto) */
 @import "components/modal.css";
+@import "components/chat-widget.css";
 @import "components/cookie-banner.css";

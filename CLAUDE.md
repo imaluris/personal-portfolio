@@ -66,4 +66,14 @@ On desktop (>768px) the `.project-card` elements of the Projects section become 
 
 - **No bundler**: all JavaScript must be valid ES2020+ that browsers can run natively. Do not introduce CommonJS (`require`) or build-step-only syntax.
 - **Three.js via CDN**: version is pinned to `0.179.1` in the import map inside `index.html`. If upgrading, update both the core and addons URLs together.
-- **Static hosting**: no server-side logic. All paths in JS/CSS must be relative or root-relative and work under a static file server.
+- **Static hosting, one exception**: the site is static except for the AI chat in `chat/` (PHP, runs on the Aruba hosting). Everything else must work under a static file server. All paths in JS/CSS must be relative or root-relative.
+
+### AI chat (`chat/`, `js/chat/`, `css/components/chat-widget.css`)
+
+Assistant that answers questions about Andrea. The browser never sees the API key.
+
+- Frontend: `js/chat/index.js` (entry, keeps history) → `ui.js` (builds the widget, open/close, messages) and `api.js` (POST to `/chat/chat.php`). Loaded as an ES module from `index.html`.
+- Backend: `chat/chat.php` is the endpoint; helpers in `chat/private/lib/` (`input.php` cleans messages, `ratelimit.php` per-visitor + daily cap, `log.php` conversation log, `anthropic.php` API call, `respond.php` errors).
+- Content: `chat/private/prompt.md` (rules: only about Andrea, refuse off-topic) and `chat/private/profilo.md` (facts the assistant may use). Edit these two to change what it says; keep `profilo.md` factual, the assistant must not invent.
+- Config: copy `chat/private/config.example.php` to `config.php` and fill it in. `config.php` and `chat/private/data/` (logs, rate-limit files) are git-ignored. `chat/private/.htaccess` blocks web access to the whole folder.
+- On the hosting, `chat/` sits next to `css/` and `js/`. It must be copied into "Per hosting" together with the frontend files.
